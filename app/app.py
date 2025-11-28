@@ -1,7 +1,8 @@
 import reflex as rx
+
 from app.pages.dashboard import dashboard_page
-from app.pages.schema_list import schema_list_page
 from app.pages.publish import publish_page
+from app.pages.schema_list import schema_list_page
 
 app = rx.App(
     theme=rx.theme(appearance="light"),

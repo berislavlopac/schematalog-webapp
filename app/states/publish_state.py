@@ -1,9 +1,11 @@
-import reflex as rx
+from datetime import UTC, datetime
 import json
+import logging
 import random
 import string
-import logging
-from datetime import datetime
+
+import reflex as rx
+
 from app.states.schema_state import SchemaState
 
 
@@ -56,19 +58,17 @@ class PublishState(rx.State):
         else:
             try:
                 json.loads(self.content)
-            except ValueError as e:
-                logging.exception(f"Error validating JSON: {e}")
+            except ValueError:
+                logging.exception("Error validating JSON")
                 trimmed = self.content.strip()
-                if trimmed.startswith("{") or trimmed.startswith("["):
+                if trimmed.startswith(("{", "[")):
                     self.content_error = "Invalid JSON format"
                     has_error = True
         if has_error:
             self.is_loading = False
             yield rx.toast.error("Please fix the errors in the form.")
             return
-        rand_suffix = "".join(
-            random.choices(string.digits + string.ascii_lowercase, k=6)
-        )
+        rand_suffix = "".join(random.choices(string.digits + string.ascii_lowercase, k=6))
         schema_id = f"sch_{rand_suffix}"
         tags_list = [t.strip() for t in self.tags.split(",") if t.strip()]
         new_schema = {
@@ -77,7 +77,7 @@ class PublishState(rx.State):
             "version": self.version,
             "description": self.description,
             "tags": tags_list,
-            "created_at": datetime.now().strftime("%d %B %Y %H:%M"),
+            "created_at": datetime.now(tz=UTC).strftime("%d %B %Y %H:%M"),
             "author": self.author or "Anonymous",
             "content": self.content,
         }

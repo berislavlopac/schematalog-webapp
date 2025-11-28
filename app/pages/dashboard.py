@@ -1,6 +1,7 @@
 import reflex as rx
+
 from app.components.layout import layout
-from app.states.schema_state import SchemaState, Schema
+from app.states.schema_state import Schema, SchemaState
 
 
 def stat_card(title: str, value: rx.Var | str, icon: str, color: str) -> rx.Component:
@@ -34,9 +35,7 @@ def dashboard_page() -> rx.Component:
     return layout(
         rx.el.div(
             rx.el.div(
-                rx.el.h1(
-                    "Dashboard", class_name="text-3xl font-bold text-gray-900 mb-2"
-                ),
+                rx.el.h1("Dashboard", class_name="text-3xl font-bold text-gray-900 mb-2"),
                 rx.el.p(
                     "Welcome to Schematalog. Here is an overview of your schema registry.",
                     class_name="text-gray-500",
@@ -44,9 +43,7 @@ def dashboard_page() -> rx.Component:
                 class_name="mb-8",
             ),
             rx.el.div(
-                stat_card(
-                    "Total Schemas", SchemaState.schemas.length(), "database", "violet"
-                ),
+                stat_card("Total Schemas", SchemaState.schemas.length(), "database", "violet"),
                 stat_card("System Status", "Operational", "activity", "green"),
                 stat_card("Pending Reviews", "0", "clipboard-list", "orange"),
                 class_name="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10",
@@ -84,9 +81,7 @@ def dashboard_page() -> rx.Component:
                             class_name="flex items-center w-full p-4 bg-violet-600 text-white rounded-xl font-medium hover:bg-violet-700 transition-colors shadow-sm hover:shadow mb-3",
                         ),
                         rx.el.a(
-                            rx.icon(
-                                "search", class_name="h-5 w-5 mr-3 text-violet-600"
-                            ),
+                            rx.icon("search", class_name="h-5 w-5 mr-3 text-violet-600"),
                             "Browse Catalog",
                             href="/schemas",
                             class_name="flex items-center w-full p-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-medium hover:bg-gray-50 hover:border-gray-300 transition-all",

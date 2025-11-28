@@ -1,5 +1,6 @@
 import reflex as rx
-from app.states.schema_state import SchemaState, Schema
+
+from app.states.schema_state import Schema, SchemaState
 
 
 def table_header(text: str) -> rx.Component:

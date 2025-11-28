@@ -1,4 +1,5 @@
 import reflex as rx
+
 from app.components.layout import layout
 from app.states.publish_state import PublishState
 
@@ -31,9 +32,7 @@ def publish_page() -> rx.Component:
     return layout(
         rx.el.div(
             rx.el.div(
-                rx.el.h1(
-                    "Publish a schema", class_name="text-2xl font-bold text-gray-900"
-                ),
+                rx.el.h1("Publish a schema", class_name="text-2xl font-bold text-gray-900"),
                 rx.el.p(
                     "Create and register a new data schema to the catalog.",
                     class_name="text-gray-500 mt-1",

@@ -1,7 +1,8 @@
 import reflex as rx
+
 from app.components.layout import layout
-from app.states.schema_state import SchemaState
 from app.components.schema_table import schema_table
+from app.states.schema_state import SchemaState
 
 
 def schema_list_page() -> rx.Component:

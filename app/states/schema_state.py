@@ -1,5 +1,6 @@
-import reflex as rx
 from typing import TypedDict
+
+import reflex as rx
 
 
 class Schema(TypedDict):
