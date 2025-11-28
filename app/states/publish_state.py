@@ -3,9 +3,7 @@ import json
 import logging
 import random
 import string
-
 import reflex as rx
-
 from app.states.schema_state import SchemaState
 
 
@@ -68,7 +66,9 @@ class PublishState(rx.State):
             self.is_loading = False
             yield rx.toast.error("Please fix the errors in the form.")
             return
-        rand_suffix = "".join(random.choices(string.digits + string.ascii_lowercase, k=6))
+        rand_suffix = "".join(
+            random.choices(string.digits + string.ascii_lowercase, k=6)
+        )
         schema_id = f"sch_{rand_suffix}"
         tags_list = [t.strip() for t in self.tags.split(",") if t.strip()]
         new_schema = {

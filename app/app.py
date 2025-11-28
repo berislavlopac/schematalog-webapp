@@ -1,8 +1,8 @@
 import reflex as rx
-
 from app.pages.dashboard import dashboard_page
 from app.pages.publish import publish_page
 from app.pages.schema_list import schema_list_page
+from app.states.theme_state import ThemeState
 
 app = rx.App(
     theme=rx.theme(appearance="light"),
@@ -15,6 +15,6 @@ app = rx.App(
         ),
     ],
 )
-app.add_page(dashboard_page, route="/")
-app.add_page(schema_list_page, route="/schemas")
-app.add_page(publish_page, route="/publish")
+app.add_page(dashboard_page, route="/", on_load=ThemeState.initialize_theme)
+app.add_page(schema_list_page, route="/schemas", on_load=ThemeState.initialize_theme)
+app.add_page(publish_page, route="/publish", on_load=ThemeState.initialize_theme)
