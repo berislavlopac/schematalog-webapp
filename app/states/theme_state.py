@@ -16,7 +16,7 @@ class ThemeState(rx.State):
     @rx.event
     async def initialize_theme(self):
         """Initialize the theme based on preference on page load."""
-        if not self.preference:
+        if not self.preference or self.preference == "":
             self.preference = "system"
         if self.preference == "system":
             yield rx.call_script(
